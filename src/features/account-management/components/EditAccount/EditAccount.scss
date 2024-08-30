@@ -1,0 +1,68 @@
+.edit-account {
+  $error-color: #e11961;
+
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__inner {
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  &__info-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 34px;
+  }
+
+  &__icon {
+    display: block;
+    margin-right: 16px;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__box {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 4fr;
+
+    & + & {
+      margin-top: 34px;
+    }
+  }
+
+  &__input {
+    &--error {
+      .tc-input {
+        border-bottom: 1px solid $error-color;
+      }
+    }
+  }
+
+  &__available {
+    color: #838383;
+  }
+
+  &__error-roles {
+    color: $error-color;
+  }
+
+  &__inner-button {
+    margin: 40px 0;
+    text-align: center;
+
+    button + button {
+      margin-left: 40px;
+    }
+  }
+
+  &__button {
+    @include tc-button-reset;
+  }
+}

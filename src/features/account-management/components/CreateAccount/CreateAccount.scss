@@ -1,0 +1,93 @@
+.create-account {
+  $error-color: #e11961;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__button {
+    margin: 0;
+    margin-left: 10px;
+    border: 1px solid #e4ecf0;
+    border-radius: 12px;
+    padding: 8px 32px;
+    min-width: 120px;
+    min-width: 0;
+    max-height: 40px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.15;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &__inner {
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  &__box {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 4fr;
+
+    &--email {
+      min-height: 96px;
+    }
+
+    & + & {
+      margin-top: 34px;
+    }
+  }
+
+  &__input {
+    &--error {
+      .tc-input {
+        border-bottom: 1px solid $error-color;
+      }
+    }
+  }
+
+  &__input-domain {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__error-message {
+    color: $error-color;
+  }
+
+  &__important-info {
+    margin-top: 4px;
+    min-height: 40px;
+    max-width: 412px;
+    font-size: 14px;
+    color: "#838383";
+
+    &--error {
+      color: $error-color;
+    }
+  }
+
+  &__inner-button {
+    margin: 40px 0;
+    text-align: center;
+
+    button + button {
+      margin-left: 40px;
+    }
+  }
+
+  &__select {
+    border: 1px solid #bac4ca;
+    border-radius: 10px;
+    padding: 0 16px;
+    width: 100%;
+    height: 42px;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+  }
+}

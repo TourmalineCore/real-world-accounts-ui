@@ -1,0 +1,4 @@
+ENV_KEY:local
+API_ROOT:http://localhost:5006/api
+API_ROOT_AUTH:http://localhost:5104/api/auth
+LINK_TO_ACCOUNT_SERVICE:/

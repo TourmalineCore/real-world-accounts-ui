@@ -1,0 +1,57 @@
+.roles-page {
+  // margin: 0 40px;
+
+  &__intro {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 16px;
+  }
+
+  &__info {
+    margin-right: auto;
+    max-width: 700px;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.5;
+  }
+
+  &__description {
+    flex-shrink: 1;
+    font-weight: 500;
+    font-size: 15px;
+    color: #838383;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: 30px;
+
+    & + & {
+      margin-left: 30px;
+    }
+  }
+
+  &__button {
+    flex-shrink: 0;
+    font-size: 20px;
+
+    &::before {
+      border-style: #838383;
+      border-radius: 0;
+    }
+
+    & + & {
+      margin-left: 30px;
+    }
+  }
+
+  &__table {
+    overflow-x: auto;
+    padding: 1px;
+  }
+}

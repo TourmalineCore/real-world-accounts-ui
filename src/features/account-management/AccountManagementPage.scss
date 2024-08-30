@@ -1,0 +1,63 @@
+.account-management-page {
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__account {
+    overflow: hidden;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &--isBlocked {
+      opacity: 0.5;
+    }
+  }
+
+  &__button {
+    display: block;
+    margin: 0;
+    margin-left: 10px;
+    border: 1px solid #e4ecf0;
+    border-radius: 12px;
+    padding: 8px 32px;
+    min-width: 120px;
+    min-width: 0;
+    max-height: 40px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.15;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &__status {
+    border-radius: 10px;
+    padding: 8px;
+    font-weight: 500;
+    background-color: $color-white-smoke;
+  }
+
+  &__notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__unblock-button {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    appearance: none;
+  }
+}

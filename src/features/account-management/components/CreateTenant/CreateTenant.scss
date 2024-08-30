@@ -1,0 +1,64 @@
+.create-tenant {
+  $error-color: #e11961;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__button {
+    @include tc-button-reset;
+  }
+
+  &__inner {
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  &__box {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 4fr;
+
+    & + & {
+      margin-top: 34px;
+    }
+  }
+
+  &__input {
+    &--error {
+      .tc-input {
+        border-bottom: 1px solid $error-color;
+      }
+    }
+  }
+
+  &__input-domain {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__error-message {
+    color: $error-color;
+  }
+
+  &__important-info {
+    margin-top: 4px;
+    min-height: 40px;
+    max-width: 412px;
+    font-size: 14px;
+    color: "#838383";
+
+    &--error {
+      color: $error-color;
+    }
+  }
+
+  &__inner-button {
+    margin: 40px 0;
+    text-align: center;
+
+    button + button {
+      margin-left: 40px;
+    }
+  }
+}
