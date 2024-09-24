@@ -1,4 +1,4 @@
-# Inner-Circle-Account-Management
+# Accounts
 
 ## Getting Started
 ```

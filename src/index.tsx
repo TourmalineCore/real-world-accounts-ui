@@ -18,20 +18,20 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 
 import { ThemeProvider } from './theme/themeContext';
-import { authService } from './common/authService';
-import { refreshTokenAndSubscribe } from './common/api/refreshByInterval';
+// import { authService } from './common/authService';
+// import { refreshTokenAndSubscribe } from './common/api/refreshByInterval';
 
 async function initApp() {
-  await refreshTokenAndSubscribe();
+  // await refreshTokenAndSubscribe();
 
   ReactDOM.render(
     <React.StrictMode>
-      <authService.AuthProvider>
-        <ThemeProvider>
-          <App />
-          <ToastContainer position="bottom-right" newestOnTop />
-        </ThemeProvider>
-      </authService.AuthProvider>
+      {/* <authService.AuthProvider> */}
+      <ThemeProvider>
+        <App />
+        <ToastContainer position="bottom-right" newestOnTop />
+      </ThemeProvider>
+      {/* </authService.AuthProvider> */}
     </React.StrictMode>,
     document.getElementById('root'),
   );

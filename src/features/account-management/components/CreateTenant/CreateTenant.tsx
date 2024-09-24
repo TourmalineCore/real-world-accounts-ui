@@ -35,7 +35,7 @@ function CreateTenant() {
             type="button"
             data-cy="create-tenant-page-button-cancel"
             className="create-account__button"
-            onClick={() => history('/account-management/tenants')}
+            onClick={() => history('/tenants')}
           >
             Cancel
           </button>
@@ -63,7 +63,7 @@ function CreateTenant() {
         });
 
         setTriedToSubmit(false);
-        history('/account-management/tenants');
+        history('/tenants');
 
         toast('New tenant added successfully', {
           type: 'success',

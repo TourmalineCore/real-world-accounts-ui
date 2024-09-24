@@ -48,7 +48,7 @@ export const TenantsPageContent = observer(({
           type="button"
           className="account-management-page__button"
           data-cy="tenants-page-content-button"
-          onClick={() => navigate('/account-management/tenants/add')}
+          onClick={() => navigate('/tenants/add')}
         >
           + Add New Tenant
         </button>

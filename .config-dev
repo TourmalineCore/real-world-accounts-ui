@@ -1,4 +1,4 @@
 ENV_KEY:dev
 API_ROOT:https://api
 API_ROOT_AUTH:https://api/auth
-LINK_TO_ACCOUNT_SERVICE:/account-management/
+LINK_TO_ACCOUNT_SERVICE:/

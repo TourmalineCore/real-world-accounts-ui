@@ -142,7 +142,7 @@ function CreateAccount() {
             type="button"
             data-cy="create-account-page-button-cancel"
             className="create-account__button"
-            onClick={() => history('/account-management')}
+            onClick={() => history('/accounts')}
           >
             Cancel
           </button>
@@ -186,7 +186,7 @@ function CreateAccount() {
         });
 
         setTriedToSubmit(false);
-        history('/account-management');
+        history('/accounts');
 
         toast('New account added successfully', {
           type: 'success',

@@ -79,7 +79,7 @@ function EditAccount() {
           <Button
             className="edit-account__button"
             data-cy="cancel-button"
-            onClick={() => navigation('/account-management')}
+            onClick={() => navigation('/accounts')}
           >
             Cancel
           </Button>
@@ -118,7 +118,7 @@ function EditAccount() {
           roles: [...selectedCheckboxes].map((item) => Number(item)),
         });
 
-        navigation('/account-management');
+        navigation('/accounts');
         setTriedToSubmit(false);
       } catch (e) {
         console.log(e);

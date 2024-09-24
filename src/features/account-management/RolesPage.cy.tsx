@@ -72,7 +72,7 @@ describe('AddNewRole', () => {
 
     cy.intercept(
       'POST',
-      'api/account-management/roles/create',
+      'api/roles/create',
       {
         name: 'Manager',
         permissions: [],

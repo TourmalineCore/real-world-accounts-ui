@@ -1,6 +1,6 @@
 describe('RolesPage', () => {
   it('SHOULD test happy path of role creation, editind and deleting WHEN visiting roles page', () => {
-    cy.visit('/account-management/roles');
+    cy.visit('/roles');
 
     cy.getByData('roles-table')
       .should('exist');
