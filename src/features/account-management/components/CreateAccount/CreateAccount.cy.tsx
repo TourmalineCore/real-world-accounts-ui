@@ -1,9 +1,9 @@
 import '../../../../../cypress/support/commands';
-import { API_ROOT, LINK_TO_ACCOUNT_SERVICE } from '../../../../common/config/config';
+import { API_ROOT } from '../../../../common/config/config';
 import CreateAccount from './CreateAccount';
 
-const START_ROOT = `${API_ROOT}${LINK_TO_ACCOUNT_SERVICE}tenants/all`;
-const START_ROOT_ROLES = `${API_ROOT}${LINK_TO_ACCOUNT_SERVICE}roles`;
+const START_ROOT = `${API_ROOT}/tenants/all`;
+const START_ROOT_ROLES = `${API_ROOT}/roles`;
 
 const MOCK_DATA: Tenants[] = [{
   id: 1,

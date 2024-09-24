@@ -3,7 +3,6 @@ import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { api } from '../../../../common/api';
-import { LINK_TO_ACCOUNT_SERVICE } from '../../../../common/config/config';
 
 function CreateTenant() {
   const history = useNavigate();
@@ -58,7 +57,7 @@ function CreateTenant() {
 
     if (formData.name) {
       try {
-        await api.post<TenantCreate>(`${LINK_TO_ACCOUNT_SERVICE}tenants`, {
+        await api.post<TenantCreate>('/tenants', {
           ...formData,
         });
 

@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useContext, useEffect } from 'react';
 import { api } from '../../common/api';
-import { LINK_TO_ACCOUNT_SERVICE } from '../../common/config/config';
 import RolesTable from './components/RolesTable/RolesTable';
 import RolesPageStateContext from './state/roles-page/RolesPageStateContext';
 // import AccessBasedOnPemissionsStateContext from '../../routes/state/AccessBasedOnPemissionsStateContext';
@@ -90,9 +89,9 @@ function RolesPageContent() {
     if (rolesPageStateContext.updatedRole?.id === 0) {
       const { name, permissions } = rolesPageStateContext.updatedRole;
 
-      await api.post(`${LINK_TO_ACCOUNT_SERVICE}roles/create`, { name, permissions });
+      await api.post('/roles/create', { name, permissions });
     } else {
-      await api.post(`${LINK_TO_ACCOUNT_SERVICE}roles/edit`, rolesPageStateContext.updatedRole);
+      await api.post('/roles/edit', rolesPageStateContext.updatedRole);
     }
 
     rolesPageStateContext.cancelRoleEditing();
@@ -100,7 +99,7 @@ function RolesPageContent() {
   }
 
   async function getRoles() {
-    const { data } = await api.get(`${LINK_TO_ACCOUNT_SERVICE}roles`);
+    const { data } = await api.get('/roles');
 
     rolesPageStateContext.initialize({ loadedRoles: data });
   }

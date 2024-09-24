@@ -4,7 +4,6 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { api } from '../../../../common/api';
-import { LINK_TO_ACCOUNT_SERVICE } from '../../../../common/config/config';
 import { Tenants } from '../Tenants/Tenants';
 
 function CreateAccount() {
@@ -163,13 +162,13 @@ function CreateAccount() {
   async function getRolesAccountLoad() {
     const { data } = await api.get<{
       id: number, name: string, permissions: []
-    }[]>(`${LINK_TO_ACCOUNT_SERVICE}roles`);
+    }[]>('/roles');
 
     setRolesData(Object.assign({}, ...data.map((role) => ({ [role.id]: role.name }))));
   }
 
   async function getTenantsAccountLoad() {
-    const { data } = await api.get(`${LINK_TO_ACCOUNT_SERVICE}tenants/all`);
+    const { data } = await api.get('/tenants/all');
 
     setTenantsData(data);
   }
@@ -179,7 +178,7 @@ function CreateAccount() {
 
     if (formData.login && [...selectedCheckboxes].length > 0 && formData.tenantId) {
       try {
-        await api.post<AccountCreate>(`${LINK_TO_ACCOUNT_SERVICE}accounts/create`, {
+        await api.post<AccountCreate>('/accounts/create', {
           ...formData,
           login: `${formData.login}`,
           roleIds: [...selectedCheckboxes].map((item) => Number(item)),

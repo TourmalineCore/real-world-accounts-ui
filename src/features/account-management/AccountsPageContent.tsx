@@ -13,7 +13,6 @@ import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../common/api';
 import { Table } from '../../types';
-import { LINK_TO_ACCOUNT_SERVICE } from '../../common/config/config';
 
 import FilterMenu from './components/FilterMenu/FilterMenu';
 import AccountManagementStateContext from './context/AccountManagementStateContext';
@@ -210,7 +209,7 @@ function AccountsPageContent() {
   async function getAccountsAsync() {
     setIsLoading(true);
     try {
-      const { data } = await api.get<Accounts[]>(`${LINK_TO_ACCOUNT_SERVICE}accounts/all`);
+      const { data } = await api.get<Accounts[]>('/accounts/all');
       accountManagementState.getAccounts(data);
     } finally {
       setIsLoading(true);
@@ -245,12 +244,12 @@ function AccountsPageContent() {
   //   });
 
   //   accountManagementState.blockAccount({ accountId });
-  //   await api.post<Accounts[]>(`${LINK_TO_ACCOUNT_SERVICE}accounts/${accountId}/block`);
+  //   await api.post<Accounts[]>(`/accounts/${accountId}/block`);
   // }
 
   // async function unblockAccountsAsync(accountId: number) {
   //   accountManagementState.unblockAccont({ accountId });
-  //   await api.post<Accounts[]>(`${LINK_TO_ACCOUNT_SERVICE}accounts/${accountId}/unblock`);
+  //   await api.post<Accounts[]>(`${/}accounts/${accountId}/unblock`);
   // }
 }
 

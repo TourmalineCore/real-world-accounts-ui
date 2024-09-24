@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CheckField, Button } from '@tourmalinecore/react-tc-ui-kit';
-import { LINK_TO_ACCOUNT_SERVICE } from '../../../../common/config/config';
 import { api } from '../../../../common/api';
 
 import { ReactComponent as IconEmail } from '../../../../assets/icons/icon-email.svg';
@@ -98,10 +97,10 @@ function EditAccount() {
   );
 
   async function getEditAccountLoad() {
-    const { data } = await api.get<AccountEdit>(`${LINK_TO_ACCOUNT_SERVICE}accounts/findById/${id}`);
+    const { data } = await api.get<AccountEdit>(`/accounts/findById/${id}`);
     const { data: roles } = await api.get<{
       id: number, name: string, permissions: []
-    }[]>(`${LINK_TO_ACCOUNT_SERVICE}roles`);
+    }[]>('/roles');
 
     setAccount(data);
     setSelectedCheckboxes(new Set([...data.roles.map((role) => String(role.id))]));
@@ -113,7 +112,7 @@ function EditAccount() {
 
     if ([...selectedCheckboxes].length > 0) {
       try {
-        await api.post(`${LINK_TO_ACCOUNT_SERVICE}accounts/edit`, {
+        await api.post('/accounts/edit', {
           id,
           roles: [...selectedCheckboxes].map((item) => Number(item)),
         });
