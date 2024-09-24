@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
-  // MouseEventHandler,
-  useContext, useEffect, useState,
+  MouseEventHandler,
+  useContext,
+  useEffect,
+  useState,
 } from 'react';
 
 import moment from 'moment';
@@ -9,14 +11,14 @@ import clsx from 'clsx';
 
 import { ClientTable } from '@tourmalinecore/react-table-responsive';
 import { observer } from 'mobx-react-lite';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../common/api';
 import { Table } from '../../types';
 
 import FilterMenu from './components/FilterMenu/FilterMenu';
 import AccountManagementStateContext from './context/AccountManagementStateContext';
-// import AccessBasedOnPemissionsStateContext from '../../routes/state/AccessBasedOnPemissionsStateContext';
+import AccessBasedOnPemissionsStateContext from '../../routes/state/AccessBasedOnPemissionsStateContext';
 
 export type Row<TypeProps> = {
   original: TypeProps;
@@ -25,7 +27,7 @@ export type Row<TypeProps> = {
 
 function AccountsPageContent() {
   const accountManagementState = useContext(AccountManagementStateContext);
-  // const accessToChanges = useContext(AccessBasedOnPemissionsStateContext);
+  const accessToChanges = useContext(AccessBasedOnPemissionsStateContext);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -133,44 +135,44 @@ function AccountsPageContent() {
     },
   ];
 
-  // const actions = [
-  //   {
-  //     name: 'edit',
-  //     show: (row: Row<Accounts>) => {
-  //       const { isBlocked, canChangeAccountState } = row.original;
+  const actions = [
+    {
+      name: 'edit',
+      show: (row: Row<Accounts>) => {
+        const { isBlocked, canChangeAccountState } = row.original;
 
-  //       return !isBlocked && canChangeAccountState;
-  //     },
-  //     renderText: () => 'Edit',
-  //     onClick: (e: MouseEventHandler<HTMLInputElement>, row: Row<Accounts>) => navigate(`/accounts/edit/${row.original.id}`),
-  //   },
-  //   {
-  //     name: 'block',
-  //     show: (row: Row<Accounts>) => {
-  //       const { isBlocked, canChangeAccountState } = row.original;
+        return !isBlocked && canChangeAccountState;
+      },
+      renderText: () => 'Edit',
+      onClick: (e: MouseEventHandler<HTMLInputElement>, row: Row<Accounts>) => navigate(`/accounts/edit/${row.original.id}`),
+    },
+    {
+      name: 'block',
+      show: (row: Row<Accounts>) => {
+        const { isBlocked, canChangeAccountState } = row.original;
 
-  //       return !isBlocked && canChangeAccountState;
-  //     },
-  //     renderText: () => 'Block',
-  //     onClick: (e: MouseEventHandler<HTMLInputElement>, row: Row<Accounts>) => blockAccountsAsync(row.original.id),
-  //   },
-  //   {
-  //     name: 'unblock',
-  //     show: (row: Row<Accounts>) => {
-  //       const { isBlocked, canChangeAccountState } = row.original;
+        return !isBlocked && canChangeAccountState;
+      },
+      renderText: () => 'Block',
+      onClick: (e: MouseEventHandler<HTMLInputElement>, row: Row<Accounts>) => blockAccountsAsync(row.original.id),
+    },
+    {
+      name: 'unblock',
+      show: (row: Row<Accounts>) => {
+        const { isBlocked, canChangeAccountState } = row.original;
 
-  //       console.log('isBlocked && canChangeAccountState', isBlocked && canChangeAccountState);
-  //       console.log('canChangeAccountState', canChangeAccountState);
+        console.log('isBlocked && canChangeAccountState', isBlocked && canChangeAccountState);
+        console.log('canChangeAccountState', canChangeAccountState);
 
-  //       return isBlocked && canChangeAccountState;
-  //     },
-  //     renderText: () => 'Unblock',
-  //     onClick: (e: MouseEventHandler<HTMLInputElement>, row: Row<Accounts>) => {
-  //       unblockAccountsAsync(row.original.id);
-  //       toast.dismiss(row.original.id);
-  //     },
-  //   },
-  // ];
+        return isBlocked && canChangeAccountState;
+      },
+      renderText: () => 'Unblock',
+      onClick: (e: MouseEventHandler<HTMLInputElement>, row: Row<Accounts>) => {
+        unblockAccountsAsync(row.original.id);
+        toast.dismiss(row.original.id);
+      },
+    },
+  ];
 
   return (
     <section className="account-management-page" data-cy="accounts-page-content">
@@ -179,15 +181,15 @@ function AccountsPageContent() {
       <div className="account-management-page__inner">
         <FilterMenu />
 
-        {/* {accessToChanges.accessPermissions.get('ManageAccounts') && ( */}
-        <button
-          type="button"
-          className="account-management-page__button"
-          onClick={() => navigate('/accounts/add')}
-        >
-          + Add New Account
-        </button>
-        {/* )} */}
+        {accessToChanges.accessPermissions.get('ManageAccounts') && (
+          <button
+            type="button"
+            className="account-management-page__button"
+            onClick={() => navigate('/accounts/add')}
+          >
+            + Add New Account
+          </button>
+        )}
       </div>
 
       <ClientTable
@@ -198,7 +200,7 @@ function AccountsPageContent() {
           id: 'lastName',
           desc: false,
         }}
-        // actions={accessToChanges.accessPermissions.get('ManageAccounts') ? actions : []}
+        actions={accessToChanges.accessPermissions.get('ManageAccounts') ? actions : []}
         columns={columns}
         isLoading={isLoading}
       />
@@ -216,41 +218,41 @@ function AccountsPageContent() {
     }
   }
 
-  // async function blockAccountsAsync(accountId: number) {
-  //   // remove all notifications, it is necessary to delete the previous notification
-  //   toast.dismiss();
+  async function blockAccountsAsync(accountId: number) {
+    // remove all notifications, it is necessary to delete the previous notification
+    toast.dismiss();
 
-  //   toast(() => (
-  //     <div className="account-management-page__notification">
-  //       <span>
-  //         {`${accountManagementState.accountToUnblock?.login}`}
-  //       </span>
-  //       <button
-  //         type="button"
-  //         className="account-management-page__unblock-button"
-  //         onClick={() => {
-  //           toast.dismiss(accountManagementState.accountToUnblock!.id);
-  //           unblockAccountsAsync(accountManagementState.accountToUnblock!.id);
-  //         }}
-  //       >
-  //         Unblock
-  //       </button>
-  //     </div>
-  //   ), {
-  //     position: 'top-center',
-  //     type: 'info',
-  //     icon: false,
-  //     toastId: accountId,
-  //   });
+    toast(() => (
+      <div className="account-management-page__notification">
+        <span>
+          {`${accountManagementState.accountToUnblock?.login}`}
+        </span>
+        <button
+          type="button"
+          className="account-management-page__unblock-button"
+          onClick={() => {
+            toast.dismiss(accountManagementState.accountToUnblock!.id);
+            unblockAccountsAsync(accountManagementState.accountToUnblock!.id);
+          }}
+        >
+          Unblock
+        </button>
+      </div>
+    ), {
+      position: 'top-center',
+      type: 'info',
+      icon: false,
+      toastId: accountId,
+    });
 
-  //   accountManagementState.blockAccount({ accountId });
-  //   await api.post<Accounts[]>(`/accounts/${accountId}/block`);
-  // }
+    accountManagementState.blockAccount({ accountId });
+    await api.post<Accounts[]>(`/accounts/${accountId}/block`);
+  }
 
-  // async function unblockAccountsAsync(accountId: number) {
-  //   accountManagementState.unblockAccont({ accountId });
-  //   await api.post<Accounts[]>(`${/}accounts/${accountId}/unblock`);
-  // }
+  async function unblockAccountsAsync(accountId: number) {
+    accountManagementState.unblockAccont({ accountId });
+    await api.post<Accounts[]>(`/accounts/${accountId}/unblock`);
+  }
 }
 
 export default observer(AccountsPageContent);

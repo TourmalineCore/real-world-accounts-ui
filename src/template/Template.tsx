@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { memo, useState } from 'react';
+import { memo, useContext, useState } from 'react';
 import useBreadcrumbs, { BreadcrumbsRoute } from 'use-react-router-breadcrumbs';
 import { useLocation } from 'react-router-dom';
 import { ReactComponent as IconLogoutActive } from '../assets/icons/icon-logout-active.svg';
@@ -12,17 +12,17 @@ import Sidebar from './components/Sidebar/Sidebar';
 import TemplatePages from './components/TemplatePages/TemplatePages';
 import { useSidebarRoutes } from './hooks/useSidebarRoutes';
 import { getAdminRoutes, getSidebarRoutes } from '../routes/adminRoutes';
-// import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext';
-// import { authService } from '../common/authService';
-// import { parseJwt } from '../common/utils/utilsForPermissions';
+import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext';
+import { authService } from '../common/authService';
+import { parseJwt } from '../common/utils/utilsForPermissions';
 
 function Template() {
   const location = useLocation();
 
-  // const accessBasedOnPemissionsStateContext = useContext(AccessBasedOnPemissionsStateContext);
+  const accessBasedOnPemissionsStateContext = useContext(AccessBasedOnPemissionsStateContext);
 
-  const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(), location);
-  const adminRoutes = getAdminRoutes();
+  const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsStateContext.accessPermissions), location);
+  const adminRoutes = getAdminRoutes(accessBasedOnPemissionsStateContext.accessPermissions);
 
   const breadcrumbs = useBreadcrumbs(adminRoutes as BreadcrumbsRoute<string>[], {
     excludePaths: [
@@ -40,8 +40,8 @@ function Template() {
     : null;
 
   // @ts-ignore
-  // const [token] = useContext(authService.AuthContext);
-  // const infoBoxDataName = parseJwt(token).login;
+  const [token] = useContext(authService.AuthContext);
+  const infoBoxDataName = parseJwt(token).login;
 
   return (
     <>
@@ -52,7 +52,7 @@ function Template() {
       >
         <div className="template__sidebar">
           <Sidebar
-            infoBoxData={{ name: 'infoBoxDataName' }}
+            infoBoxData={{ name: infoBoxDataName }}
             menuData={parsedSidebarRoutes}
             isCollapsed={isSidebarCollapsed}
             isMobileOpened={isMobileSidebarOpened}
