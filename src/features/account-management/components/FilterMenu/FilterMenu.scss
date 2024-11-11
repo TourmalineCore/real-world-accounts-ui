@@ -1,0 +1,32 @@
+.filter-menu {
+  display: flex;
+  margin: 0;
+  border: 1px solid #e4ecf0;
+  border-radius: 12px;
+  padding: 0;
+  max-height: 40px;
+  background: #fff;
+
+  &__button {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 16px;
+    min-width: 98px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1;
+    color: #000;
+    background: #fff;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      opacity: 0.75;
+    }
+
+    &--active {
+      background: #f1f5f7;
+    }
+  }
+}
